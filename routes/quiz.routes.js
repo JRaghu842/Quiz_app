@@ -40,22 +40,6 @@ QuizRouter.put("/api/quizzes/:quizId", (req, res) => {
     });
 });
 
-QuizRouter.patch("/api/quizzes/:quizId", (req, res) => {
-  const quizId = req.params.quizId;
-  const quizData = req.body.quiz;
-
-  Quiz.findByIdAndUpdate(quizId, quizData, { new: true })
-    .then((quiz) => {
-      if (!quiz) {
-        return res.status(404).json({ error: "Quiz not found" });
-      }
-      res.json({ quiz });
-    })
-    .catch((error) => {
-      res.status(400).json({ error: error.message });
-    });
-});
-
 QuizRouter.delete("/api/quizzes/:quizId", (req, res) => {
   const quizId = req.params.quizId;
 
